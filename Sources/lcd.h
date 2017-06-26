@@ -88,6 +88,12 @@ void LCDputchar(char letra) {
   }
 }
 
+void LCDString(char *chain){
+  while (chain++ != '\0') {
+    LCDputchar(*chain);
+  }
+}
+
 // ============================================================================
 // LCD Clear Screen
 // Clears the Screen

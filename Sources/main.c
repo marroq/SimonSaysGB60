@@ -70,12 +70,43 @@ void showGame(byte *sequency) {
   }
 }
 
+byte play(byte *sequency) {
+  byte i=0, stage=0;
+  
+  for(i=0; i<LEVEL1; i++) {
+    waitKey(1);
+    if (PTAD_PTAD4 == 1) {
+      if (sequency[i] == 1)
+        stage++;
+    } else if (PTAD_PTAD5 == 1) {
+      if (sequency[i] == 2)
+        stage++; 
+    } else if (PTAD_PTAD6 == 1) {
+      if (sequency[i] == 3)
+        stage++;
+    } else if (PTAD_PTAD7 == 1) {
+      if (sequency[i] == 4)
+        stage++;
+    }
+  }
+  
+  return stage;
+}
+
 void main(void) {
-  byte *sequency = (byte*)malloc(LEVEL1 * sizeof(byte));   
-  
+  byte *sequency = (byte*)malloc(LEVEL1 * sizeof(byte));
+  byte stage=0;
+      
   LCDinit();
-  config();                                             //Configuracion de leds y push button
-  symonSequency(sequency);                              //Almaceno secuencia del juego
-  showGame(sequency);                                   //Mostrar secuencia al jugador
+  config();                   //Configuracion de leds y push button
+  symonSequency(sequency);    //Almaceno secuencia del juego
+  showGame(sequency);         //Mostrar secuencia al jugador
   
+  stage = play(sequency);     //Validacion de secuencia por el jugador            
+    
+  if (stage == LEVEL1) {      
+    LCDString("Correct!");
+  } else {
+    LCDString("YOU LOSE!");
+  }
 }
