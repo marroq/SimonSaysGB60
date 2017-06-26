@@ -109,4 +109,6 @@ void main(void) {
   } else {
     LCDString("YOU LOSE!");
   }
+  
+  free(sequency);
 }
