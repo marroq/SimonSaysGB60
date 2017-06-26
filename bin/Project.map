@@ -29,7 +29,7 @@ extern struct _tagStartup {
   unsigned nofZeroOut     2
   _Range   pZeroOut       0x100     4
                           0x184     2004
-  _Copy    *toCopyDownBeg 0x2209
+  _Copy    *toCopyDownBeg 0x22EA
 } _startupData;
 
 *********************************************************************************************
@@ -40,9 +40,9 @@ Section Name                    Size  Type     From       To       Segment
 .stack                           128   R/W      0x104      0x183   RAM
 .init                            132     R     0x182C     0x18AF   ROM
 .startData                        18     R     0x18B0     0x18C1   ROM
-.rodata1                          19     R     0x18C2     0x18D4   ROM
-.text                           2356     R     0x18D5     0x2208   ROM
-.copy                              7     R     0x2209     0x220F   ROM
+.rodata1                          31     R     0x18C2     0x18E0   ROM
+.text                           2569     R     0x18E1     0x22E9   ROM
+.copy                              7     R     0x22EA     0x22F0   ROM
 .abs_section_0                     1   N/I        0x0        0x0   .absSeg0
 .abs_section_1                     1   N/I        0x1        0x1   .absSeg1
 .abs_section_2                     1   N/I        0x2        0x2   .absSeg2
@@ -156,7 +156,7 @@ HEAP_SEGMENT                    2000   R/W      0x188      0x957   RAM
 .vectSeg108_vect                   2     R     0xFFFE     0xFFFF   .vectSeg108
 
 Summary of section sizes per section type:
-READ_ONLY (R):         9E6 (dec:     2534)
+READ_ONLY (R):         AC7 (dec:     2759)
 READ_WRITE (R/W):      858 (dec:     2136)
 NO_INIT (N/I):          7E (dec:      126)
 
@@ -172,67 +172,69 @@ OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     msDelay                                   18D5      2C      44       4   .text       
-     LCDSend                                   1901       5       5       2   .text       
-     LCDCommand                                1906      29      41       4   .text       
-     LCDputchar                                192F      36      54       1   .text       
-     LCDString                                 1965      1E      30       1   .text       
-     LCDinit                                   1983      4E      78       1   .text       
-     waitKey                                   19D1      32      50       1   .text       
-     config                                    1A03      13      19       1   .text       
-     symonSequency                             1A16      33      51       1   .text       
-     showGame                                  1A49      38      56       1   .text       
-     play                                      1A81      54      84       1   .text       
-     main                                      1AD5      3E      62       1   .text       
+     msDelay                                   18E1      2C      44       4   .text       
+     LCDSend                                   190D       5       5       2   .text       
+     LCDCommand                                1912      29      41       4   .text       
+     LCDputchar                                193B      36      54       1   .text       
+     LCDString                                 1971      1E      30       3   .text       
+     LCDinit                                   198F      4E      78       1   .text       
+     waitKey                                   19DD      32      50       1   .text       
+     config                                    1A0F      13      19       1   .text       
+     symonSequency                             1A22      36      54       3   .text       
+     showGame                                  1A58      3B      59       1   .text       
+     play                                      1A93      57      87       1   .text       
+     evaluate                                  1AEA      53      83       1   .text       
+     main                                      1B3D      B7     183       1   .text       
 - VARIABLES:
-     STRING.Correct..1                         18C2       9       9       1   .rodata1    
-     STRING.YOU.LOSE..2                        18CB       A      10       1   .rodata1    
+     STRING.WIN..1                             18C2       5       5       1   .rodata1    
+     STRING.YOU.LOSE..2                        18C7       A      10       1   .rodata1    
+     STRING.FINISH.3.STAGES.3                  18D1      10      16       1   .rodata1    
 MODULE:                 -- HEAP.C.o (ansiis.lib) --
 - PROCEDURES:
-     _heapcrash_                               1B13      16      22       4   .text       
+     _heapcrash_                               1BF4      16      22       4   .text       
 - VARIABLES:
      _heap_                                     188     7D0    2000       2   HEAP_SEGMENT
 MODULE:                 -- RTSHC08.C.o (ansiis.lib) --
 - PROCEDURES:
-     _PUSH_ARGS_L                              1B29      20      32       2   .text       
-     _ENTER_BINARY_L                           1B49      16      22       1   .text       
-     _ENTER_BINARY_L_RC                        1B5F      19      25       5   .text       
-     _IDIVMOD                                  1B78      69     105       2   .text       
-     _SPLITSIGN                                1BE1      1C      28       2   .text       
-     _LADD_k_is_k_plus_j                       1BFD      1F      31       1   .text       
-     _k_is_k_plus_j_l                          1C1C      1E      30       2   .text       
-     _k_is_k_plus_j_i                          1C3A      12      18       3   .text       
-     _LSUB_k_is_k_minus_j                      1C4C      1F      31       1   .text       
-     _LMUL_k_is_k_mul_j                        1C6B      81     129       1   .text       
-     _LDIVMOD                                  1CEC      A4     164       2   .text       
-     _NEG_L_HX                                 1D90      13      19       3   .text       
-     _ABS_L_HX                                 1DA3       6       6       2   .text       
-     _SPLITSIGN_L                              1DA9       A      10       2   .text       
-     _LMODS_k_is_k_mod_j                       1DB3      18      24       1   .text       
-     _LDIVS_k_is_k_div_j                       1DCB      27      39       1   .text       
-     _LCMP_k_rel_j                             1DF2      1F      31       1   .text       
-     _IMUL_STAR08                              1E11      27      39       4   .text       
-     _IDIVS_STAR08                             1E38      1B      27       1   .text       
-     _IDIVU_STAR08                             1E53       D      13       1   .text       
-     _IMODS_STAR08                             1E60      25      37       1   .text       
-     _LADD_RC                                  1E85       6       6       1   .text       
-     _LSUB                                     1E8B       6       6       1   .text       
-     _LMUL_RC                                  1E91       6       6       2   .text       
-     _LDIVS_RC                                 1E97       6       6       1   .text       
-     _LMODS_RC                                 1E9D       6       6       1   .text       
-     _LCMP_RC                                  1EA3       6       6       1   .text       
-     _POP32                                    1EA9      1A      26       4   .text       
-     _Jump_Table_Header_Offset                 1EC3      24      36       2   .text       
+     _PUSH_ARGS_L                              1C0A      20      32       2   .text       
+     _ENTER_BINARY_L                           1C2A      16      22       1   .text       
+     _ENTER_BINARY_L_RC                        1C40      19      25       5   .text       
+     _IDIVMOD                                  1C59      69     105       2   .text       
+     _SPLITSIGN                                1CC2      1C      28       2   .text       
+     _LADD_k_is_k_plus_j                       1CDE      1F      31       1   .text       
+     _k_is_k_plus_j_l                          1CFD      1E      30       2   .text       
+     _k_is_k_plus_j_i                          1D1B      12      18       3   .text       
+     _LSUB_k_is_k_minus_j                      1D2D      1F      31       1   .text       
+     _LMUL_k_is_k_mul_j                        1D4C      81     129       1   .text       
+     _LDIVMOD                                  1DCD      A4     164       2   .text       
+     _NEG_L_HX                                 1E71      13      19       3   .text       
+     _ABS_L_HX                                 1E84       6       6       2   .text       
+     _SPLITSIGN_L                              1E8A       A      10       2   .text       
+     _LMODS_k_is_k_mod_j                       1E94      18      24       1   .text       
+     _LDIVS_k_is_k_div_j                       1EAC      27      39       1   .text       
+     _LCMP_k_rel_j                             1ED3      1F      31       1   .text       
+     _IMUL_STAR08                              1EF2      27      39       4   .text       
+     _IDIVS_STAR08                             1F19      1B      27       1   .text       
+     _IDIVU_STAR08                             1F34       D      13       1   .text       
+     _IMODS_STAR08                             1F41      25      37       1   .text       
+     _LADD_RC                                  1F66       6       6       1   .text       
+     _LSUB                                     1F6C       6       6       1   .text       
+     _LMUL_RC                                  1F72       6       6       2   .text       
+     _LDIVS_RC                                 1F78       6       6       1   .text       
+     _LMODS_RC                                 1F7E       6       6       1   .text       
+     _LCMP_RC                                  1F84       6       6       1   .text       
+     _POP32                                    1F8A      1A      26       4   .text       
+     _Jump_Table_Header_Offset                 1FA4      24      36       3   .text       
 - VARIABLES:
 MODULE:                 -- STDLIB.C.o (ansiis.lib) --
 - PROCEDURES:
-     rand                                      1EE7      6B     107       1   .text       
+     rand                                      1FC8      6B     107       1   .text       
 - VARIABLES:
      seed                                       100       4       4       7   .data       
 MODULE:                 -- ALLOC.C.o (ansiis.lib) --
 - PROCEDURES:
-     malloc                                    1F52     147     327       5   .text       
-     free                                      2099     170     368       4   .text       
+     malloc                                    2033     147     327       7   .text       
+     free                                      217A     170     368       6   .text       
 - VARIABLES:
      heap_end                                   184       2       2       3   .bss        
      free_ptr                                   186       2       2       7   .bss        
@@ -361,7 +363,7 @@ MODULE:                 -- Start08.c.o --
 MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
-  main.c.o                                     0    574     19
+  main.c.o                                     0    787     31
   HEAP.C.o (ansiis.lib)                     2000     22      0
   RTSHC08.C.o (ansiis.lib)                     0    958      0
   STDLIB.C.o (ansiis.lib)                      4    107      0
@@ -375,13 +377,13 @@ SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
   msDelay LCDSend LCDCommand LCDputchar LCDString LCDinit waitKey config 
-  symonSequency showGame play main _heapcrash_ _PUSH_ARGS_L _ENTER_BINARY_L 
-  _ENTER_BINARY_L_RC _IDIVMOD _SPLITSIGN _LADD_k_is_k_plus_j _k_is_k_plus_j_l 
-  _k_is_k_plus_j_i _LSUB_k_is_k_minus_j _LMUL_k_is_k_mul_j _LDIVMOD _NEG_L_HX 
-  _ABS_L_HX _SPLITSIGN_L _LMODS_k_is_k_mod_j _LDIVS_k_is_k_div_j _LCMP_k_rel_j 
-  _IMUL_STAR08 _IDIVS_STAR08 _IDIVU_STAR08 _IMODS_STAR08 _LADD_RC _LSUB 
-  _LMUL_RC _LDIVS_RC _LMODS_RC _LCMP_RC _POP32 _Jump_Table_Header_Offset rand 
-  malloc free 
+  symonSequency showGame play evaluate main _heapcrash_ _PUSH_ARGS_L 
+  _ENTER_BINARY_L _ENTER_BINARY_L_RC _IDIVMOD _SPLITSIGN _LADD_k_is_k_plus_j 
+  _k_is_k_plus_j_l _k_is_k_plus_j_i _LSUB_k_is_k_minus_j _LMUL_k_is_k_mul_j 
+  _LDIVMOD _NEG_L_HX _ABS_L_HX _SPLITSIGN_L _LMODS_k_is_k_mod_j 
+  _LDIVS_k_is_k_div_j _LCMP_k_rel_j _IMUL_STAR08 _IDIVS_STAR08 _IDIVU_STAR08 
+  _IMODS_STAR08 _LADD_RC _LSUB _LMUL_RC _LDIVS_RC _LMODS_RC _LCMP_RC _POP32 
+  _Jump_Table_Header_Offset rand malloc free 
 SECTION: ".data"
   seed 
 SECTION: ".bss"
@@ -389,7 +391,7 @@ SECTION: ".bss"
 SECTION: ".init"
   loadByte Init _Startup 
 SECTION: ".rodata1"
-  STRING.Correct..1 STRING.YOU.LOSE..2 
+  STRING.WIN..1 STRING.YOU.LOSE..2 STRING.FINISH.3.STAGES.3 
 SECTION: "HEAP_SEGMENT"
   _heap_ 
 SECTION: ".abs_section_0"
@@ -728,53 +730,55 @@ OBJECT LIST SORTED BY ADDRESS
      loadByte                                  182C       E      14       5   .init       
      Init                                      183A      6D     109       1   .init       
      _Startup                                  18A7       9       9       0   .init       
-     STRING.Correct..1                         18C2       9       9       1   .rodata1    
-     STRING.YOU.LOSE..2                        18CB       A      10       1   .rodata1    
-     msDelay                                   18D5      2C      44       4   .text       
-     LCDSend                                   1901       5       5       2   .text       
-     LCDCommand                                1906      29      41       4   .text       
-     LCDputchar                                192F      36      54       1   .text       
-     LCDString                                 1965      1E      30       1   .text       
-     LCDinit                                   1983      4E      78       1   .text       
-     waitKey                                   19D1      32      50       1   .text       
-     config                                    1A03      13      19       1   .text       
-     symonSequency                             1A16      33      51       1   .text       
-     showGame                                  1A49      38      56       1   .text       
-     play                                      1A81      54      84       1   .text       
-     main                                      1AD5      3E      62       1   .text       
-     _heapcrash_                               1B13      16      22       4   .text       
-     _PUSH_ARGS_L                              1B29      20      32       2   .text       
-     _ENTER_BINARY_L                           1B49      16      22       1   .text       
-     _ENTER_BINARY_L_RC                        1B5F      19      25       5   .text       
-     _IDIVMOD                                  1B78      69     105       2   .text       
-     _SPLITSIGN                                1BE1      1C      28       2   .text       
-     _LADD_k_is_k_plus_j                       1BFD      1F      31       1   .text       
-     _k_is_k_plus_j_l                          1C1C      1E      30       2   .text       
-     _k_is_k_plus_j_i                          1C3A      12      18       3   .text       
-     _LSUB_k_is_k_minus_j                      1C4C      1F      31       1   .text       
-     _LMUL_k_is_k_mul_j                        1C6B      81     129       1   .text       
-     _LDIVMOD                                  1CEC      A4     164       2   .text       
-     _NEG_L_HX                                 1D90      13      19       3   .text       
-     _ABS_L_HX                                 1DA3       6       6       2   .text       
-     _SPLITSIGN_L                              1DA9       A      10       2   .text       
-     _LMODS_k_is_k_mod_j                       1DB3      18      24       1   .text       
-     _LDIVS_k_is_k_div_j                       1DCB      27      39       1   .text       
-     _LCMP_k_rel_j                             1DF2      1F      31       1   .text       
-     _IMUL_STAR08                              1E11      27      39       4   .text       
-     _IDIVS_STAR08                             1E38      1B      27       1   .text       
-     _IDIVU_STAR08                             1E53       D      13       1   .text       
-     _IMODS_STAR08                             1E60      25      37       1   .text       
-     _LADD_RC                                  1E85       6       6       1   .text       
-     _LSUB                                     1E8B       6       6       1   .text       
-     _LMUL_RC                                  1E91       6       6       2   .text       
-     _LDIVS_RC                                 1E97       6       6       1   .text       
-     _LMODS_RC                                 1E9D       6       6       1   .text       
-     _LCMP_RC                                  1EA3       6       6       1   .text       
-     _POP32                                    1EA9      1A      26       4   .text       
-     _Jump_Table_Header_Offset                 1EC3      24      36       2   .text       
-     rand                                      1EE7      6B     107       1   .text       
-     malloc                                    1F52     147     327       5   .text       
-     free                                      2099     170     368       4   .text       
+     STRING.WIN..1                             18C2       5       5       1   .rodata1    
+     STRING.YOU.LOSE..2                        18C7       A      10       1   .rodata1    
+     STRING.FINISH.3.STAGES.3                  18D1      10      16       1   .rodata1    
+     msDelay                                   18E1      2C      44       4   .text       
+     LCDSend                                   190D       5       5       2   .text       
+     LCDCommand                                1912      29      41       4   .text       
+     LCDputchar                                193B      36      54       1   .text       
+     LCDString                                 1971      1E      30       3   .text       
+     LCDinit                                   198F      4E      78       1   .text       
+     waitKey                                   19DD      32      50       1   .text       
+     config                                    1A0F      13      19       1   .text       
+     symonSequency                             1A22      36      54       3   .text       
+     showGame                                  1A58      3B      59       1   .text       
+     play                                      1A93      57      87       1   .text       
+     evaluate                                  1AEA      53      83       1   .text       
+     main                                      1B3D      B7     183       1   .text       
+     _heapcrash_                               1BF4      16      22       4   .text       
+     _PUSH_ARGS_L                              1C0A      20      32       2   .text       
+     _ENTER_BINARY_L                           1C2A      16      22       1   .text       
+     _ENTER_BINARY_L_RC                        1C40      19      25       5   .text       
+     _IDIVMOD                                  1C59      69     105       2   .text       
+     _SPLITSIGN                                1CC2      1C      28       2   .text       
+     _LADD_k_is_k_plus_j                       1CDE      1F      31       1   .text       
+     _k_is_k_plus_j_l                          1CFD      1E      30       2   .text       
+     _k_is_k_plus_j_i                          1D1B      12      18       3   .text       
+     _LSUB_k_is_k_minus_j                      1D2D      1F      31       1   .text       
+     _LMUL_k_is_k_mul_j                        1D4C      81     129       1   .text       
+     _LDIVMOD                                  1DCD      A4     164       2   .text       
+     _NEG_L_HX                                 1E71      13      19       3   .text       
+     _ABS_L_HX                                 1E84       6       6       2   .text       
+     _SPLITSIGN_L                              1E8A       A      10       2   .text       
+     _LMODS_k_is_k_mod_j                       1E94      18      24       1   .text       
+     _LDIVS_k_is_k_div_j                       1EAC      27      39       1   .text       
+     _LCMP_k_rel_j                             1ED3      1F      31       1   .text       
+     _IMUL_STAR08                              1EF2      27      39       4   .text       
+     _IDIVS_STAR08                             1F19      1B      27       1   .text       
+     _IDIVU_STAR08                             1F34       D      13       1   .text       
+     _IMODS_STAR08                             1F41      25      37       1   .text       
+     _LADD_RC                                  1F66       6       6       1   .text       
+     _LSUB                                     1F6C       6       6       1   .text       
+     _LMUL_RC                                  1F72       6       6       2   .text       
+     _LDIVS_RC                                 1F78       6       6       1   .text       
+     _LMODS_RC                                 1F7E       6       6       1   .text       
+     _LCMP_RC                                  1F84       6       6       1   .text       
+     _POP32                                    1F8A      1A      26       4   .text       
+     _Jump_Table_Header_Offset                 1FA4      24      36       3   .text       
+     rand                                      1FC8      6B     107       1   .text       
+     malloc                                    2033     147     327       7   .text       
+     free                                      217A     170     368       6   .text       
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
@@ -804,7 +808,7 @@ ALLOC.C.o (ansiis.lib):
   calloc realloc 
 NOT USED VARIABLES
 main.c.o:
-  LEDS LEVEL1 
+  LEDS LEVEL1 LEVEL2 LEVEL3 
 RTSHC08.C.o (ansiis.lib):
   _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 errno 
 STDLIB.C.o (ansiis.lib):
@@ -813,13 +817,13 @@ STDLIB.C.o (ansiis.lib):
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0x2209 ---- SIZE       4 ---
+------- ROM-ADDRESS: 0x22EA ---- SIZE       4 ---
 Filling bytes inserted
  00010103
-------- ROM-ADDRESS: 0x220D ---- RAM-ADDRESS: 0x103 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x22EE ---- RAM-ADDRESS: 0x103 ---- SIZE       1 ---
 Name of initialized Object : seed:3
  01
-------- ROM-ADDRESS: 0x220E ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x22EF ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -838,8 +842,10 @@ config                    USES _PTFDD _PTADD
 symonSequency             USES rand _IMODS_STAR08 
 showGame                  USES _Jump_Table_Header_Offset _PTFD 
 play                      USES waitKey _PTAD 
-main                      USES malloc LCDinit config symonSequency showGame 
-                                play STRING.Correct..1 STRING.YOU.LOSE..2 LCDString 
+evaluate                  USES showGame play STRING.WIN..1 LCDString 
+                                STRING.YOU.LOSE..2 
+main                      USES malloc LCDinit config symonSequency 
+                                _Jump_Table_Header_Offset STRING.FINISH.3.STAGES.3 LCDString evaluate 
                                 free 
 _heapcrash_               USES _IDIVS_STAR08 
 _ENTER_BINARY_L           USES _PUSH_ARGS_L 
@@ -971,16 +977,8 @@ DEPENDENCY TREE
  |  |     | 
  |  |     +- _SPLITSIGN           (see above)
  |  |        
- |  +- showGame            
- |  |  | 
- |  |  +- _Jump_Table_Header_Offset
- |  |       
- |  +- play                
- |  |  | 
- |  |  +- waitKey             
- |  |     | 
- |  |     +- _Jump_Table_Header_Offset (see above)
- |  |        
+ |  +- _Jump_Table_Header_Offset
+ |  |    
  |  +- LCDString           
  |  |  | 
  |  |  +- LCDputchar          
@@ -991,6 +989,20 @@ DEPENDENCY TREE
  |  |     |  
  |  |     +- LCDSend              (see above)
  |  |        
+ |  +- evaluate            
+ |  |  | 
+ |  |  +- showGame            
+ |  |  |  | 
+ |  |  |  +- _Jump_Table_Header_Offset (see above)
+ |  |  |     
+ |  |  +- play                
+ |  |  |  | 
+ |  |  |  +- waitKey             
+ |  |  |     | 
+ |  |  |     +- _Jump_Table_Header_Offset (see above)
+ |  |  |        
+ |  |  +- LCDString            (see above)
+ |  |     
  |  +- free                
  |     | 
  |     +- _heapcrash_          (see above)
@@ -1011,6 +1023,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 4
-Total size of all blocks to be downloaded: 2534
+Number of blocks to be downloaded: 5
+Total size of all blocks to be downloaded: 2759
 
