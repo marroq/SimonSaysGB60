@@ -89,8 +89,8 @@ void LCDputchar(char letra) {
 }
 
 void LCDString(char *chain){
-  while (chain++ != '\0') {
-    LCDputchar(*chain);
+  while (*chain != '\0') {
+    LCDputchar(*(chain++));
   }
 }
 
