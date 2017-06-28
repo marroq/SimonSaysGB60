@@ -171,8 +171,4 @@ void main(void) {
         break;
     }  
   }
-    
-  free(sequency);
-  free(sequency2);
-  free(sequency3);
 }
